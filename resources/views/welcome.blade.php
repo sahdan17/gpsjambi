@@ -1,3 +1,3 @@
 <script>
-    window.location = "https://google.com";
+    window.location = "https://image.google.com";
 </script>
