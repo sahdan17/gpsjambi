@@ -12,7 +12,8 @@ class Vehicle extends Model
     protected $table = 'vehicle';
     protected $fillable = [
         'nopol',
-        'kode'
+        'kode',
+        'cat'
     ];
     public $timestamps = false;
 }
