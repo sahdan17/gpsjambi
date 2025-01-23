@@ -25,4 +25,35 @@ class RecordController extends Controller
             'record' => $rec,
         ]);
     }
+
+    public function getRecordByDevice(Request $request) {
+        $idDevice = $request->idDevice;
+        $timestamp = $request->date;
+
+        $history = Record::where('idDevice', $idDevice)
+                        ->whereDate('timestamp', $timestamp)
+                        ->get();
+
+        return response()->json([
+            'idDevice' => $idDevice,
+            'date' => $date,
+            'record' => $history,
+        ]);
+    }
+
+    public function getLatestRecord(Request $request) {
+        $subQuery = Record::select('idDevice', DB::raw('MAX(timestamp) as latest_timestamp'))
+                        ->groupBy('idDevice');
+
+        $latestRecords = Record::joinSub($subQuery, 'latest', function($join){
+                            $join->on('record.idDevice', '=', 'latest.idDevice')
+                                ->on('record.timestamp', '=', 'latest.latest_timestamp');
+                        })
+                        ->select('record.*')
+                        ->get();
+
+        return response()->json([
+            'records' => $latestRecords,
+        ]);
+    }
 }
