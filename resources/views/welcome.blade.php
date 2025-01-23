@@ -1,1 +1,3 @@
-pertamina jambi gacor
+<script>
+    window.location = "https://google.com";
+</script>

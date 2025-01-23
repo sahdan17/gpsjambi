@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/store', [RecordController::class,'store']);
+Route::post('/getRecordByDevice', [RecordController::class,'getRecordByDevice']);
+Route::post('/getLatestRecord', [RecordController::class,'getLatestRecord']);
+
+Route::post('/storeVehicle', [VehicleController::class,'storeVehicle']);
