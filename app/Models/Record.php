@@ -14,6 +14,7 @@ class Record extends Model
         'lat',
         'long',
         'speed',
+        'sat',
         'status',
         'idDevice',
         'timestamp'

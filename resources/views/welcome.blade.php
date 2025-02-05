@@ -1,3 +1,1 @@
-<script>
-    window.location = "https://google.com";
-</script>
+<p>tes</p>

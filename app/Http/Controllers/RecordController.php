@@ -12,18 +12,26 @@ class RecordController extends Controller
     public function store(Request $request) {
         $timestamp = Carbon::now('Asia/Jakarta');
 
-        $rec = Record::create([
-            'lat' => $request->lat,
-            'long' => $request->long,
-            'speed' => $request->speed,
-            'status' => $request->status,
-            'idDevice' => $request->idDevice,
-            'timestamp' => $timestamp,
-        ]);
-
-        return response()->json([
-            'record' => $rec,
-        ]);
+        try {
+            $rec = Record::create([
+                'lat' => $request->lat,
+                'long' => $request->long,
+                'speed' => $request->speed,
+                'status' => $request->status,
+                'idDevice' => $request->idDevice,
+                'timestamp' => $timestamp,
+            ]);
+    
+            return response()->json([
+                'record' => $rec,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to store data',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function getRecordByDevice(Request $request) {

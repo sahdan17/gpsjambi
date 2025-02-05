@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('lat');
             $table->string('long');
             $table->float('speed');
+            $table->integer('sat');
             $table->enum('status', ['start', 'stop', 'idle']);
             $table->unsignedInteger('idDevice');
             $table->dateTime('timestamp');
