@@ -14,4 +14,20 @@ class RouteZoneController extends Controller
             'polyline' => $polyline,
         ]);
     }
+
+    public function formatCoordinates(Request $request): array {
+        $lines = explode(" ", trim($request->input));
+        $formatted = [];
+        
+        foreach ($lines as $line) {
+            $parts = explode(",", $line);
+            if (count($parts) >= 2) {
+                $formatted[] = [(float) $parts[0], (float) $parts[1]];
+            }
+        }
+
+        file_put_contents('coordinates1.json', json_encode($formatted, JSON_PRETTY_PRINT));
+        
+        return $formatted;
+    }
 }

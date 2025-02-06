@@ -27,5 +27,6 @@ Route::post('/getLatestRecord', [RecordController::class,'getLatestRecord']);
 Route::post('/areaCheck', [RecordController::class,'areaCheck']);
 
 Route::post('/ppssglRoute', [RouteZoneController::class,'ppssglRoute']);
+Route::post('/formatCoordinates', [RouteZoneController::class,'formatCoordinates']);
 
 Route::post('/storeVehicle', [VehicleController::class,'storeVehicle']);

@@ -36,7 +36,7 @@
 
 <script>
     $(document).ready(function() {
-        var map = L.map('map', { zoomControl: false }).setView([-1.6526113935473765, 103.60736014023293], 20);
+        var map = L.map('map', { zoomControl: false });
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -59,7 +59,7 @@
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    date: "2025-02-05",
+                    date: "2025-02-06",
                     idDevice: 1
                 },
                 headers: {

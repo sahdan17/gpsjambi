@@ -67,7 +67,7 @@
                 </a>
             </li> --}}
             <li class="nav-item toggleSidebar">
-                <a href="#">
+                <a href="route">
                     <span class="navIcon toggleSidebar">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </span>

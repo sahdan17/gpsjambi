@@ -36,7 +36,7 @@
 
 <script>
     $(document).ready(function() {
-        var map = L.map('map', { zoomControl: false }).setView([-1.6526113935473765, 103.60736014023293], 20);
+        var map = L.map('map', { zoomControl: false });
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -54,19 +54,23 @@
 
         function updateMarker() {
             $.ajax({
-                url: 'https://gpsstaging.findingoillosses.com/api/ppssglroute',
+                url: 'https://gpsstaging.findingoillosses.com/api/ppssglRoute',
                 // url: '{{ url('getRecordByDevice') }}',
                 method: 'POST',
                 dataType: 'json',
-                data: {
-                    date: "2025-02-05",
-                    idDevice: 1
-                },
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
                     console.log(response);
+                    if (response.polyline.length > 0) {
+                        response.polyline.forEach(r => {
+                            poly.push([r[1], r[0]]);
+                        });
+                        console.log(poly);
+                        var polyline = L.polyline(poly, {color: 'red'}).addTo(map);
+                        map.fitBounds(polyline.getBounds());
+                    }
                 },
                 error: function(error) {
                     console.log("Error fetching data: ", error);
