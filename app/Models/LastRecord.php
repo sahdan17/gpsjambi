@@ -9,7 +9,7 @@ class Lastrecord extends Model
 {
     use HasFactory;
 
-    protected $table = 'lastRecord';
+    protected $table = 'lastrecord';
     protected $fillable = [
         'lat',
         'long',
