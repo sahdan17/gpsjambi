@@ -50,7 +50,7 @@
 
         var marker = [];
 
-        var poly = [];
+        var polylines = [];
 
         function updateMarker() {
             $.ajax({
@@ -62,14 +62,23 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    console.log(response);
                     if (response.polyline.length > 0) {
-                        response.polyline.forEach(r => {
-                            poly.push([r[1], r[0]]);
+                        response.polyline.forEach((r, index) => {
+                            let poly = [];
+                            r.forEach(e => {
+                                poly.push([e[1], e[0]]);
+                            });
+
+                            let polyline = L.polyline(poly, { color: 'red' }).addTo(map);
+                            polylines.push(polyline);
                         });
-                        console.log(poly);
-                        var polyline = L.polyline(poly, {color: 'red'}).addTo(map);
-                        map.fitBounds(polyline.getBounds());
+
+                        // Atur tampilan peta berdasarkan semua polyline
+                        let bounds = polylines[0].getBounds();
+                        polylines.forEach(polyline => {
+                            bounds.extend(polyline.getBounds());
+                        });
+                        map.fitBounds(bounds);
                     }
                 },
                 error: function(error) {
