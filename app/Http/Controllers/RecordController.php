@@ -35,7 +35,6 @@ class RecordController extends Controller
                 'sat' => $request->sat,
                 'dir' => $request->dir,
                 'status' => $request->status,
-                'idDevice' => $request->idDevice,
                 'timestamp' => $timestamp,
             ]);
     
