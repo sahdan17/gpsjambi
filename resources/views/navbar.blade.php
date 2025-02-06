@@ -28,6 +28,18 @@
                         <i class="fa-solid fa-chevron-down" id="btnDown"></i>
                         <i class="fa-solid fa-chevron-up" id="btnUp"></i>
                     </span>
+                    <ul class="hideNav">
+                        <li>
+                            <a href="/">
+                                <span>Live Monitoring</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/history">
+                                <span>History</span>
+                            </a>
+                        </li>
+                    </ul>
                 </a>                
             </li>
             <li class="nav-item toggleSidebar">
@@ -42,12 +54,12 @@
                     </span>
                     <ul class="hideNav">
                         <li>
-                            <a href="/">
+                            <a href="#">
                                 <span>Edit Vehicle</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/">
+                            <a href="#">
                                 <span>Driver</span>
                             </a>
                         </li>

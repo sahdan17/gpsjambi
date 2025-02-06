@@ -60,7 +60,7 @@ class RecordController extends Controller
 
         return response()->json([
             'idDevice' => $idDevice,
-            'date' => $date,
+            'date' => $timestamp,
             'record' => $history,
         ]);
     }

@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('navbar');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/history', function () {
+    return view('history');
+});
+
 Route::post('/getLatestRecord', [RecordController::class,'getLatestRecord']);
+Route::post('/getRecordByDevice', [RecordController::class,'getRecordByDevice']);
 
 // Route::get('/', [RecordController::class,'view']);
