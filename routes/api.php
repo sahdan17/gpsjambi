@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\RouteZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/store', [RecordController::class,'store']);
 Route::post('/getRecordByDevice', [RecordController::class,'getRecordByDevice']);
 Route::post('/getLatestRecord', [RecordController::class,'getLatestRecord']);
+Route::post('/areaCheck', [RecordController::class,'areaCheck']);
+
+Route::post('/ppssglRoute', [RouteZoneController::class,'ppssglRoute']);
 
 Route::post('/storeVehicle', [VehicleController::class,'storeVehicle']);

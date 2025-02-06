@@ -33,6 +33,7 @@
     crossorigin=""></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="{{ asset('assets/Leaflet.RotatedMarker-master/leaflet.rotatedMarker.js') }}"></script>
 
 <script>
     $(document).ready(function() {
@@ -46,6 +47,7 @@
         var greenIcon = L.icon({
             iconUrl: '{{ asset('assets/images/vt.png') }}',
             iconSize: [70, 70],
+            iconAnchor: [35, 35],
         });
 
         var marker = [];
@@ -67,9 +69,10 @@
                             var id = r.idDevice;
                             var newLat = r.lat;
                             var newLng = r.long;
+                            var angle = r.dir;
 
                             if (!marker[id]) {
-                                marker[id] = L.marker([newLat, newLng], { icon: greenIcon }).addTo(map);
+                                marker[id] = L.marker([newLat, newLng], { icon: greenIcon, rotationAngle: angle }).addTo(map);
                             } else {
                                 var currentLatLng = marker[id].getLatLng();
                                 gsap.to(currentLatLng, {
@@ -82,7 +85,16 @@
                                 });
                             }
 
-                            marker[id].bindTooltip(r.speed + " KM/h").openTooltip();
+                            // var rotatedIcon = L.icon({
+                            //     iconUrl: '{{ asset('assets/images/vt.png') }}',
+                            //     iconSize: [70, 70],
+                            //     iconAnchor: [35, 35], // Anchor tetap di tengah
+                            //     iconAngle: angle,  // Rotasi berdasarkan data angle
+                            // });
+
+                            // marker[id].setIcon(rotatedIcon);
+
+                            marker[id].bindTooltip(r.speed + " KM/h<br>tes").openTooltip();
                         });
                     }
                 },

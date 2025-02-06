@@ -29,10 +29,6 @@ body {
     width: 80px;
 }
 
-#sidebar.shrink #logoContainer {
-    display: none;
-}
-
 #sidebar.shrink .navText {
     display: none;
 }
@@ -170,6 +166,10 @@ li:hover #btnUp {
     }
 
     #sidebar.shrink .logout {
+        display: none;
+    }
+
+    #sidebar.shrink #logoContainer {
         display: none;
     }
 }

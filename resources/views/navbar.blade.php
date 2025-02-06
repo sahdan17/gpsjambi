@@ -42,7 +42,7 @@
                     </ul>
                 </a>                
             </li>
-            <li class="nav-item toggleSidebar">
+            {{-- <li class="nav-item toggleSidebar">
                 <a href="#">
                     <span class="navIcon toggleSidebar">
                         <i class="fa-solid fa-truck"></i>
@@ -65,7 +65,7 @@
                         </li>
                     </ul>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item toggleSidebar">
                 <a href="#">
                     <span class="navIcon toggleSidebar">

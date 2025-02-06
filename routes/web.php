@@ -25,6 +25,10 @@ Route::get('/history', function () {
     return view('history');
 });
 
+Route::get('/route', function () {
+    return view('route');
+});
+
 Route::post('/getLatestRecord', [RecordController::class,'getLatestRecord']);
 Route::post('/getRecordByDevice', [RecordController::class,'getRecordByDevice']);
 

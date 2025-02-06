@@ -8,6 +8,7 @@ use App\Models\LastRecord;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RecordController extends Controller
 {
@@ -71,5 +72,58 @@ class RecordController extends Controller
         return response()->json([
             'records' => $latestRecords,
         ]);
+    }
+
+    public static function haversine($lat1, $lon1, $lat2, $lon2) {
+        $earthRadius = 6371000;
+    
+        $latFrom = deg2rad($lat1);
+        $lonFrom = deg2rad($lon1);
+        $latTo = deg2rad($lat2);
+        $lonTo = deg2rad($lon2);
+    
+        $latDiff = $latTo - $latFrom;
+        $lonDiff = $lonTo - $lonFrom;
+    
+        $a = sin($latDiff / 2) * sin($latDiff / 2) +
+             cos($latFrom) * cos($latTo) *
+             sin($lonDiff / 2) * sin($lonDiff / 2);
+    
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+    
+        return $earthRadius * $c;
+    }
+    
+    public static function isWithinAllowedArea($vehicleLat, $vehicleLon, $polyline, $tolerance = 20) {
+        foreach ($polyline as $key => $coordinate) {
+            if ($key < count($polyline) - 1) {
+                $start = $polyline[$key];
+                $end = $polyline[$key + 1];
+    
+                $distanceStart = self::haversine($vehicleLat, $vehicleLon, $start[1], $start[0]);
+                $distanceEnd = self::haversine($vehicleLat, $vehicleLon, $end[1], $end[0]);
+    
+                if ($distanceStart <= $tolerance || $distanceEnd <= $tolerance) {
+                    return true;
+                }
+            }
+        }
+    
+        return false;
+    }
+    
+    public function areaCheck($record) {
+    // public function areaCheck() {
+        $json = file_get_contents(public_path('assets/kmz/dev.json'));
+        $polyline = json_decode($json, true);
+
+        $vehicleLat = $record->lat;
+        $vehicleLon = $record->long;
+
+        if ($this->isWithinAllowedArea($vehicleLat, $vehicleLon, $polyline)) {
+            echo "Kendaraan berada di dalam area yang diperbolehkan.";
+        } else {
+            echo "Kendaraan berada di luar area yang diperbolehkan.";
+        }
     }
 }
