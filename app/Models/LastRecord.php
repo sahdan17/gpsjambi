@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Record extends Model
+class Lastrecord extends Model
 {
     use HasFactory;
 
-    protected $table = 'record';
+    protected $table = 'lastRecord';
     protected $fillable = [
         'lat',
         'long',

@@ -17,4 +17,10 @@ Route::get('/', function () {
     return view('navbar');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::post('/getLatestRecord', [RecordController::class,'getLatestRecord']);
+
 // Route::get('/', [RecordController::class,'view']);

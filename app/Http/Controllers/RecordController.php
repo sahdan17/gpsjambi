@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Record;
+use App\Models\LastRecord;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class RecordController extends Controller
@@ -17,6 +19,19 @@ class RecordController extends Controller
                 'lat' => $request->lat,
                 'long' => $request->long,
                 'speed' => $request->speed,
+                'sat' => $request->sat,
+                'dir' => $request->dir,
+                'status' => $request->status,
+                'idDevice' => $request->idDevice,
+                'timestamp' => $timestamp,
+            ]);
+
+            $last = LastRecord::create([
+                'lat' => $request->lat,
+                'long' => $request->long,
+                'speed' => $request->speed,
+                'sat' => $request->sat,
+                'dir' => $request->dir,
                 'status' => $request->status,
                 'idDevice' => $request->idDevice,
                 'timestamp' => $timestamp,
