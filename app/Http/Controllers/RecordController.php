@@ -26,7 +26,9 @@ class RecordController extends Controller
                 'timestamp' => $timestamp,
             ]);
 
-            $last = LastRecord::create([
+            $last = LastRecord::updateOrCreate(
+                ['idDevice' => $request->idDevice],
+                [
                 'lat' => $request->lat,
                 'long' => $request->long,
                 'speed' => $request->speed,
