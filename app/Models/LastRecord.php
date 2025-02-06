@@ -10,6 +10,8 @@ class Lastrecord extends Model
     use HasFactory;
 
     protected $table = 'lastrecord';
+    protected $primaryKey = 'idDevice';
+    public $incrementing = false;
     protected $fillable = [
         'lat',
         'long',
