@@ -50,6 +50,8 @@
 
         var marker = [];
 
+        var poly = [];
+
         function updateMarker() {
             $.ajax({
                 url: 'https://gpsstaging.findingoillosses.com/api/getRecordByDevice',
@@ -57,37 +59,20 @@
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    date: "2025-02-06",
+                    date: "2025-02-05",
                     idDevice: 1
                 },
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    console.log(response);
-                    // if (response.records.length > 0) {
-                    //     response.records.forEach(r => {
-                    //         console.log(r.idDevice);
-
-                    //         var id = r.idDevice;
-                    //         var newLat = r.lat;
-                    //         var newLng = r.long;
-
-                    //         if (!marker[id]) {
-                    //             marker[id] = L.marker([newLat, newLng], { icon: greenIcon }).addTo(map);
-                    //         } else {
-                    //             var currentLatLng = marker[id].getLatLng();
-                    //             gsap.to(currentLatLng, {
-                    //                 duration: 1.5,
-                    //                 lat: newLat,
-                    //                 lng: newLng,
-                    //                 onUpdate: function() {
-                    //                     marker[id].setLatLng([currentLatLng.lat, currentLatLng.lng]);
-                    //                 }
-                    //             });
-                    //         }
-                    //     });
-                    // }
+                    if (response.record.length > 0) {
+                        response.record.forEach(r => {
+                            poly.push([r.lat, r.long]);
+                        });
+                        var polyline = L.polyline(poly, {color: 'red'}).addTo(map);
+                        map.fitBounds(polyline.getBounds());
+                    }
                 },
                 error: function(error) {
                     console.log("Error fetching data: ", error);

@@ -66,15 +66,7 @@ class RecordController extends Controller
     }
 
     public function getLatestRecord(Request $request) {
-        $subQuery = Record::select('idDevice', DB::raw('MAX(timestamp) as latest_timestamp'))
-                        ->groupBy('idDevice');
-
-        $latestRecords = Record::joinSub($subQuery, 'latest', function($join){
-                            $join->on('record.idDevice', '=', 'latest.idDevice')
-                                ->on('record.timestamp', '=', 'latest.latest_timestamp');
-                        })
-                        ->select('record.*')
-                        ->get();
+        $latestRecords = LastRecord::all();
 
         return response()->json([
             'records' => $latestRecords,

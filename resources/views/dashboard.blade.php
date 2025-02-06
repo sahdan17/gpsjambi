@@ -81,6 +81,8 @@
                                     }
                                 });
                             }
+
+                            marker[id].bindTooltip(r.speed + " KM/h").openTooltip();
                         });
                     }
                 },
