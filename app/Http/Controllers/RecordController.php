@@ -94,7 +94,7 @@ class RecordController extends Controller
         return $earthRadius * $c; // Jarak dalam meter
     }
     
-    public static function isWithinAllowedArea($vehicleLat, $vehicleLon, $polylineSet, $tolerance = 30) {
+    public static function isWithinAllowedArea($vehicleLat, $vehicleLon, $polylineSet, $tolerance = 50) {
         // Loop melalui setiap polyline (garis)
         foreach ($polylineSet as $polyline) {
             // Loop melalui setiap titik di dalam polyline
