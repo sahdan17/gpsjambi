@@ -72,7 +72,7 @@
                         <i class="fa-solid fa-map-location-dot"></i>
                     </span>
                     <span class="navText">Route Zone</span>
-                    <span class="dropBtn">
+                    <span class="dropBtn" id="hide">
                         <i class="fa-solid fa-chevron-down" id="btnDown"></i>
                         <i class="fa-solid fa-chevron-up" id="btnUp"></i>
                     </span>

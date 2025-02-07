@@ -155,6 +155,10 @@ li:hover #btnUp {
     cursor: pointer;
 }
 
+#hide {
+    opacity: 0;
+}
+
 @media (max-width: 500px) {
     #sidebar.shrink {
         height: 75px;

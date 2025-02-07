@@ -75,7 +75,7 @@ class RecordController extends Controller
     }
 
     public static function haversine($lat1, $lon1, $lat2, $lon2) {
-        $earthRadius = 6371000;
+        $earthRadius = 6371000; // Radius Bumi dalam meter
     
         $latFrom = deg2rad($lat1);
         $lonFrom = deg2rad($lon1);
@@ -91,34 +91,43 @@ class RecordController extends Controller
     
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
     
-        return $earthRadius * $c;
+        return $earthRadius * $c; // Jarak dalam meter
     }
     
-    public static function isWithinAllowedArea($vehicleLat, $vehicleLon, $polyline, $tolerance = 20) {
-        foreach ($polyline as $key => $coordinate) {
-            if ($key < count($polyline) - 1) {
+    public static function isWithinAllowedArea($vehicleLat, $vehicleLon, $polylineSet, $tolerance = 30) {
+        // Loop melalui setiap polyline (garis)
+        foreach ($polylineSet as $polyline) {
+            // Loop melalui setiap titik di dalam polyline
+            for ($key = 0; $key < count($polyline) - 1; $key++) {
                 $start = $polyline[$key];
                 $end = $polyline[$key + 1];
     
+                // Hitung jarak dari kendaraan ke titik awal dan titik akhir
                 $distanceStart = self::haversine($vehicleLat, $vehicleLon, $start[1], $start[0]);
                 $distanceEnd = self::haversine($vehicleLat, $vehicleLon, $end[1], $end[0]);
     
+                // Jika kendaraan berada dalam toleransi dari titik awal atau akhir
                 if ($distanceStart <= $tolerance || $distanceEnd <= $tolerance) {
-                    return true;
+                    return true; // Kendaraan berada dalam area yang diperbolehkan
                 }
             }
         }
     
-        return false;
-    }
+        return false; // Kendaraan tidak berada dalam area yang diperbolehkan
+    }    
     
-    public function areaCheck($record) {
-    // public function areaCheck() {
-        $json = file_get_contents(public_path('assets/kmz/dev.json'));
+    // public function areaCheck($record) {
+    public function areaCheck(Request $request) {
+        $json = file_get_contents(public_path('assets/kmz/pps-sgl.json'));
         $polyline = json_decode($json, true);
+        // dd($polyline);
 
-        $vehicleLat = $record->lat;
-        $vehicleLon = $record->long;
+        // $vehicleLat = $record->lat;
+        // $vehicleLon = $record->long;
+        $coords = explode(',', $request->loc);
+
+        $vehicleLat = $coords[0];
+        $vehicleLon = $coords[1];
 
         if ($this->isWithinAllowedArea($vehicleLat, $vehicleLon, $polyline)) {
             echo "Kendaraan berada di dalam area yang diperbolehkan.";

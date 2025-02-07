@@ -37,7 +37,7 @@
 
 <script>
     $(document).ready(function() {
-        var map = L.map('map', { zoomControl: false }).setView([-1.6526113935473765, 103.60736014023293], 20);
+        var map = L.map('map', { zoomControl: false }).setView([-1.6091853411312935, 103.63866150931194], 13);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -84,15 +84,6 @@
                                     }
                                 });
                             }
-
-                            // var rotatedIcon = L.icon({
-                            //     iconUrl: '{{ asset('assets/images/vt.png') }}',
-                            //     iconSize: [70, 70],
-                            //     iconAnchor: [35, 35], // Anchor tetap di tengah
-                            //     iconAngle: angle,  // Rotasi berdasarkan data angle
-                            // });
-
-                            // marker[id].setIcon(rotatedIcon);
 
                             marker[id].bindTooltip(r.speed + " KM/h<br>tes").openTooltip();
                         });
