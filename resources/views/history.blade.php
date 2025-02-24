@@ -59,7 +59,7 @@
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    date: "2025-02-06",
+                    date: "2025-02-20",
                     idDevice: 1
                 },
                 headers: {

@@ -42,30 +42,6 @@
                     </ul>
                 </a>                
             </li>
-            {{-- <li class="nav-item toggleSidebar">
-                <a href="#">
-                    <span class="navIcon toggleSidebar">
-                        <i class="fa-solid fa-truck"></i>
-                    </span>
-                    <span class="navText">Vehicle</span>
-                    <span class="dropBtn">
-                        <i class="fa-solid fa-chevron-down" id="btnDown"></i>
-                        <i class="fa-solid fa-chevron-up" id="btnUp"></i>
-                    </span>
-                    <ul class="hideNav">
-                        <li>
-                            <a href="#">
-                                <span>Edit Vehicle</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span>Driver</span>
-                            </a>
-                        </li>
-                    </ul>
-                </a>
-            </li> --}}
             <li class="nav-item toggleSidebar">
                 <a href="route">
                     <span class="navIcon toggleSidebar">
