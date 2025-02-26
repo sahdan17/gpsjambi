@@ -115,9 +115,10 @@ class RecordController extends Controller
     public function areaCheck(Request $request) {
         $json = file_get_contents(public_path('assets/kmz/pps-sgl.json'));
         $polyline = json_decode($json, true);
+        echo($request->loc);
         
         $coords = explode(',', $request->loc);
-        dd($coords);
+        echo($coords);
 
         $vehicleLat = $coords[0];
         $vehicleLon = $coords[1];
