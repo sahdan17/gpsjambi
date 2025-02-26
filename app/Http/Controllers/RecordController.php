@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Record;
 use App\Models\LastRecord;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -115,10 +116,8 @@ class RecordController extends Controller
     public function areaCheck(Request $request) {
         $json = file_get_contents(public_path('assets/kmz/pps-sgl.json'));
         $polyline = json_decode($json, true);
-        echo($request->loc);
         
         $coords = explode(',', $request->loc);
-        echo($coords);
 
         $vehicleLat = $coords[0];
         $vehicleLon = $coords[1];
