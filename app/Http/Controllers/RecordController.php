@@ -117,6 +117,7 @@ class RecordController extends Controller
         $polyline = json_decode($json, true);
         
         $coords = explode(',', $request->loc);
+        dd($coords);
 
         $vehicleLat = $coords[0];
         $vehicleLon = $coords[1];
